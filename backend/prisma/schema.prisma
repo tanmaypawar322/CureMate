@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrgType {
+  hospital
+  clinic
+  pharmacy
+  lab
+
+  @@map("org_type")
+}
+
+enum OrgRole {
+  admin
+  doctor
+  pharmacy_owner
+  lab_owner
+  staff
+
+  @@map("org_role")
+}
+
+model User {
+  id           String          @id @default(uuid()) @db.Uuid
+  email        String          @unique
+  phone        String?
+  passwordHash String          @map("password_hash")
+  abhaId       String?         @map("abha_id")
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  memberships  OrgMembership[]
+
+  @@map("users")
+}
+
+model Organization {
+  id                 String          @id @default(uuid()) @db.Uuid
+  name               String
+  type               OrgType
+  subscriptionPlanId String?         @map("subscription_plan_id") @db.Uuid
+  createdAt          DateTime        @default(now()) @map("created_at")
+  updatedAt          DateTime        @updatedAt @map("updated_at")
+  memberships        OrgMembership[]
+
+  @@map("organizations")
+}
+
+model OrgMembership {
+  id        String       @id @default(uuid()) @db.Uuid
+  userId    String       @map("user_id") @db.Uuid
+  orgId     String       @map("org_id") @db.Uuid
+  role      OrgRole
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, orgId, role])
+  @@index([orgId])
+  @@index([userId])
+  @@map("org_memberships")
+}
