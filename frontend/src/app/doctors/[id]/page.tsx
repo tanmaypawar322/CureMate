@@ -101,7 +101,7 @@ export default function DoctorDetailPage() {
     return (
       <div className="min-h-screen bg-slate-50 p-8 text-center">
         <p className="text-sm text-red-500 mb-4">{error || 'Doctor not found'}</p>
-        <Link href="/search" className="text-teal-600 text-xs font-semibold hover:underline">
+        <Link href="/search" className="text-blue-600 text-xs font-semibold hover:underline">
           ← Back to Search
         </Link>
       </div>
@@ -113,7 +113,7 @@ export default function DoctorDetailPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between">
-          <Link href="/search" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/search" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Doctors Search
           </Link>
           {user && (
@@ -141,7 +141,7 @@ export default function DoctorDetailPage() {
         <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <span className="px-2.5 py-1 bg-teal-50 text-teal-800 rounded-full text-xs font-bold uppercase tracking-wider">
+              <span className="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-full text-xs font-bold uppercase tracking-wider">
                 {doctor.specialization}
               </span>
               <h1 className="text-2xl font-bold text-slate-900 mt-2">
@@ -198,7 +198,7 @@ export default function DoctorDetailPage() {
                 value={selectedDate}
                 min={new Date().toISOString().split('T')[0]}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 font-medium"
+                className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
               />
             </div>
           </div>
@@ -226,8 +226,8 @@ export default function DoctorDetailPage() {
                     onClick={() => setSelectedSlot(slot)}
                     className={`py-2.5 px-3 rounded-lg text-xs font-bold border transition-all ${
                       selectedSlot?.datetime === slot.datetime
-                        ? 'bg-teal-600 text-white border-teal-600 shadow-md ring-2 ring-teal-300'
-                        : 'bg-white text-slate-700 border-slate-200 hover:border-teal-500 hover:bg-teal-50/50'
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-sky-300'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-blue-500 hover:bg-blue-50/50'
                     }`}
                   >
                     {slot.time}
@@ -239,21 +239,21 @@ export default function DoctorDetailPage() {
 
           {/* Booking Confirmation Box */}
           {selectedSlot && (
-            <form onSubmit={handleBook} className="mt-6 p-5 bg-teal-50/60 rounded-xl border border-teal-200 space-y-4">
+            <form onSubmit={handleBook} className="mt-6 p-5 bg-blue-50/60 rounded-xl border border-blue-200 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-teal-950">Confirm Slot Booking</h3>
-                  <p className="text-xs text-teal-800">
+                  <h3 className="text-sm font-bold text-blue-950">Confirm Slot Booking</h3>
+                  <p className="text-xs text-blue-800">
                     {selectedDate} at {selectedSlot.time} (UTC / Local Clinic Time)
                   </p>
                 </div>
-                <span className="text-xs font-bold text-teal-900">
+                <span className="text-xs font-bold text-blue-900">
                   Fee: ₹{Number(doctor.consultationFee)}
                 </span>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-teal-900 mb-1">
+                <label className="block text-xs font-semibold uppercase text-blue-900 mb-1">
                   Reason for visit / Patient symptoms (Optional)
                 </label>
                 <input
@@ -261,7 +261,7 @@ export default function DoctorDetailPage() {
                   placeholder="e.g. Mild fever, routine checkup, follow-up..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3 py-2 border border-teal-200 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-blue-200 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -276,7 +276,7 @@ export default function DoctorDetailPage() {
                 <button
                   type="submit"
                   disabled={booking}
-                  className="px-5 py-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-lg text-xs font-bold shadow-sm transition-colors"
+                  className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white rounded-lg text-xs font-bold shadow-sm transition-colors"
                 >
                   {booking ? 'Confirming...' : 'Book Appointment'}
                 </button>

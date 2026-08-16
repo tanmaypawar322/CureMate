@@ -119,7 +119,7 @@ export default function DoctorAppointmentsPage() {
           <p className="text-xs text-slate-500 mt-1 mb-4">
             You must be registered as a Doctor or Admin in an organization to view patient queues.
           </p>
-          <Link href="/dashboard" className="text-teal-600 text-xs font-semibold hover:underline">
+          <Link href="/dashboard" className="text-blue-600 text-xs font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -141,7 +141,7 @@ export default function DoctorAppointmentsPage() {
             <select
               value={selectedOrgId}
               onChange={(e) => setSelectedOrgId(e.target.value)}
-              className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 font-medium"
+              className="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
             >
               {doctorMemberships.map((m) => (
                 <option key={m.orgId} value={m.orgId}>
@@ -149,7 +149,7 @@ export default function DoctorAppointmentsPage() {
                 </option>
               ))}
             </select>
-            <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+            <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
               ← Dashboard
             </Link>
           </div>
@@ -175,7 +175,7 @@ export default function DoctorAppointmentsPage() {
             <button
               onClick={() => loadAppointments(selectedOrgId)}
               disabled={loadingAppts}
-              className="text-xs text-teal-600 hover:underline font-semibold"
+              className="text-xs text-blue-600 hover:underline font-semibold"
             >
               Refresh
             </button>
@@ -225,7 +225,7 @@ export default function DoctorAppointmentsPage() {
                       <>
                         <button
                           onClick={() => setPrescribingAppt(appt)}
-                          className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded text-xs font-semibold shadow-sm transition-colors"
+                          className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-semibold shadow-sm transition-colors"
                         >
                           💊 Write Prescription
                         </button>
@@ -285,7 +285,7 @@ export default function DoctorAppointmentsPage() {
                     placeholder="Diagnosis observations, diet instructions, or follow-up advice..."
                     value={prescNotes}
                     onChange={(e) => setPrescNotes(e.target.value)}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -297,7 +297,7 @@ export default function DoctorAppointmentsPage() {
                     <button
                       type="button"
                       onClick={handleAddMedicineItem}
-                      className="text-xs text-teal-600 font-bold hover:underline"
+                      className="text-xs text-blue-600 font-bold hover:underline"
                     >
                       + Add Medicine
                     </button>
@@ -313,7 +313,7 @@ export default function DoctorAppointmentsPage() {
                             placeholder="Medicine Name (e.g. Amoxicillin)"
                             value={item.medicineName}
                             onChange={(e) => handleItemChange(idx, 'medicineName', e.target.value)}
-                            className="px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                            className="px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                           />
                           <input
                             type="text"
@@ -321,7 +321,7 @@ export default function DoctorAppointmentsPage() {
                             placeholder="Dosage (e.g. 500mg, 1 tablet)"
                             value={item.dosage}
                             onChange={(e) => handleItemChange(idx, 'dosage', e.target.value)}
-                            className="px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                            className="px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                           />
                         </div>
 
@@ -332,7 +332,7 @@ export default function DoctorAppointmentsPage() {
                             placeholder="Frequency (e.g. Twice daily)"
                             value={item.frequency}
                             onChange={(e) => handleItemChange(idx, 'frequency', e.target.value)}
-                            className="sm:col-span-2 px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                            className="sm:col-span-2 px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                           />
                           <div className="flex items-center space-x-1">
                             <input
@@ -342,7 +342,7 @@ export default function DoctorAppointmentsPage() {
                               placeholder="Days"
                               value={item.durationDays}
                               onChange={(e) => handleItemChange(idx, 'durationDays', Number(e.target.value))}
-                              className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                              className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                             />
                             {prescItems.length > 1 && (
                               <button
@@ -371,7 +371,7 @@ export default function DoctorAppointmentsPage() {
                   <button
                     type="submit"
                     disabled={submittingPresc}
-                    className="px-5 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-bold shadow-sm disabled:opacity-50"
+                    className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold shadow-sm disabled:opacity-50"
                   >
                     {submittingPresc ? 'Saving Prescription...' : 'Issue Prescription'}
                   </button>

@@ -96,7 +96,7 @@ export default function DoctorAvailabilityPage() {
           <p className="text-xs text-slate-500 mt-1 mb-4">
             You must be registered as a Doctor to configure availability.
           </p>
-          <Link href="/dashboard" className="text-teal-600 text-xs font-semibold hover:underline">
+          <Link href="/dashboard" className="text-blue-600 text-xs font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -114,7 +114,7 @@ export default function DoctorAvailabilityPage() {
               Configure your weekly working days and appointment slot duration
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -139,7 +139,7 @@ export default function DoctorAvailabilityPage() {
               <select
                 value={selectedOrgId}
                 onChange={(e) => setSelectedOrgId(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {doctorMemberships.map((m) => (
                   <option key={m.orgId} value={m.orgId}>
@@ -156,7 +156,7 @@ export default function DoctorAvailabilityPage() {
               <select
                 value={slotDuration}
                 onChange={(e) => setSlotDuration(Number(e.target.value))}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value={15}>15 Minutes</option>
                 <option value={20}>20 Minutes</option>
@@ -173,7 +173,7 @@ export default function DoctorAvailabilityPage() {
               <button
                 type="button"
                 onClick={handleAddSlot}
-                className="text-xs text-teal-600 font-semibold hover:underline"
+                className="text-xs text-blue-600 font-semibold hover:underline"
               >
                 + Add Time Window
               </button>
@@ -189,7 +189,7 @@ export default function DoctorAvailabilityPage() {
                     <select
                       value={slot.dayOfWeek}
                       onChange={(e) => handleSlotChange(index, 'dayOfWeek', Number(e.target.value))}
-                      className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-teal-500"
+                      className="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                     >
                       {DAYS.map((d) => (
                         <option key={d.id} value={d.id}>
@@ -206,7 +206,7 @@ export default function DoctorAvailabilityPage() {
                       required
                       value={slot.startTime}
                       onChange={(e) => handleSlotChange(index, 'startTime', e.target.value)}
-                      className="px-2 py-1 border border-slate-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-teal-500 bg-white"
+                      className="px-2 py-1 border border-slate-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
                     />
                     <span>to</span>
                     <input
@@ -214,7 +214,7 @@ export default function DoctorAvailabilityPage() {
                       required
                       value={slot.endTime}
                       onChange={(e) => handleSlotChange(index, 'endTime', e.target.value)}
-                      className="px-2 py-1 border border-slate-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-teal-500 bg-white"
+                      className="px-2 py-1 border border-slate-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white"
                     />
                   </div>
 
@@ -233,7 +233,7 @@ export default function DoctorAvailabilityPage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+            className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
           >
             {saving ? 'Saving Availability...' : 'Save Weekly Schedule'}
           </button>

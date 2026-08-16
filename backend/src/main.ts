@@ -12,7 +12,13 @@ async function bootstrap() {
 
   // Enable CORS for frontend client
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://[::1]:3000',
+      /^http:\/\/localhost:\d+$/,
+      /^http:\/\/127\.0\.0\.1:\d+$/,
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-org-id'],
@@ -30,7 +36,7 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   logger.log(`CureMate Backend running on http://localhost:${port}`);
 }
 

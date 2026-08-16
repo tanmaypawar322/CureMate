@@ -82,7 +82,7 @@ export default function OrgSettingsPage() {
           <p className="text-xs text-slate-500 mt-1 mb-4">
             You do not hold an Admin role in any registered organization.
           </p>
-          <Link href="/dashboard" className="text-teal-600 text-xs font-semibold hover:underline">
+          <Link href="/dashboard" className="text-blue-600 text-xs font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -100,7 +100,7 @@ export default function OrgSettingsPage() {
               Manage public clinic and hospital profile details (Phase 1)
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -125,7 +125,7 @@ export default function OrgSettingsPage() {
               <select
                 value={selectedOrgId}
                 onChange={(e) => handleOrgChange(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {adminMemberships.map((m) => (
                   <option key={m.orgId} value={m.orgId}>
@@ -146,7 +146,7 @@ export default function OrgSettingsPage() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -160,7 +160,7 @@ export default function OrgSettingsPage() {
                   placeholder="e.g. Mumbai, Bengaluru"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -173,7 +173,7 @@ export default function OrgSettingsPage() {
                   placeholder="+91 22 1234 5678"
                   value={contactNumber}
                   onChange={(e) => setContactNumber(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function OrgSettingsPage() {
                 placeholder="123 Hospital Road, Opp. Metro Station"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -200,14 +200,14 @@ export default function OrgSettingsPage() {
                 placeholder="Brief summary of departments, facilities, or specialties offered..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <button
               type="submit"
               disabled={saving}
-              className="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
             >
               {saving ? 'Saving changes...' : 'Save Organization Settings'}
             </button>

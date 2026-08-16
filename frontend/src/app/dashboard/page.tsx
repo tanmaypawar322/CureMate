@@ -20,7 +20,7 @@ export default function DashboardPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-600 border-t-transparent mx-auto mb-3"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto mb-3"></div>
           <p className="text-sm text-slate-500">Loading user profile...</p>
         </div>
       </div>
@@ -70,23 +70,23 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <Link href="/dashboard" className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-sm">
                 CM
               </div>
               <span className="text-lg font-bold text-slate-800">CureMate</span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-4 text-sm font-medium text-slate-600">
-              <Link href="/search" className="hover:text-teal-600 transition-colors">
+              <Link href="/search" className="hover:text-blue-600 transition-colors">
                 Find Doctors
               </Link>
-              <Link href="/appointments" className="hover:text-teal-600 transition-colors">
+              <Link href="/appointments" className="hover:text-blue-600 transition-colors">
                 My Appointments
               </Link>
-              <Link href="/prescriptions" className="hover:text-teal-600 transition-colors">
+              <Link href="/prescriptions" className="hover:text-blue-600 transition-colors">
                 My Prescriptions
               </Link>
-              <Link href="/patient/profile" className="hover:text-teal-600 transition-colors">
+              <Link href="/patient/profile" className="hover:text-blue-600 transition-colors">
                 Patient Profile
               </Link>
             </nav>
@@ -106,7 +106,7 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* Phase 1 Quick Navigation Cards */}
+        {/* Quick Navigation Cards */}
         <section>
           <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">
             Quick Actions & Clinical Modules
@@ -114,10 +114,10 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link
               href="/search"
-              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-teal-500 hover:shadow-md transition-all group"
+              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all group"
             >
               <div className="text-2xl mb-2">🔍</div>
-              <h3 className="text-sm font-bold text-slate-800 group-hover:text-teal-600">
+              <h3 className="text-sm font-bold text-slate-800 group-hover:text-blue-600">
                 Find Doctors & Clinics
               </h3>
               <p className="text-xs text-slate-500 mt-1">
@@ -127,10 +127,10 @@ export default function DashboardPage() {
 
             <Link
               href="/appointments"
-              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-teal-500 hover:shadow-md transition-all group"
+              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all group"
             >
               <div className="text-2xl mb-2">📅</div>
-              <h3 className="text-sm font-bold text-slate-800 group-hover:text-teal-600">
+              <h3 className="text-sm font-bold text-slate-800 group-hover:text-blue-600">
                 My Appointments
               </h3>
               <p className="text-xs text-slate-500 mt-1">
@@ -140,10 +140,10 @@ export default function DashboardPage() {
 
             <Link
               href="/prescriptions"
-              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-teal-500 hover:shadow-md transition-all group"
+              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all group"
             >
               <div className="text-2xl mb-2">💊</div>
-              <h3 className="text-sm font-bold text-slate-800 group-hover:text-teal-600">
+              <h3 className="text-sm font-bold text-slate-800 group-hover:text-blue-600">
                 My Prescriptions
               </h3>
               <p className="text-xs text-slate-500 mt-1">
@@ -153,10 +153,10 @@ export default function DashboardPage() {
 
             <Link
               href="/patient/profile"
-              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-teal-500 hover:shadow-md transition-all group"
+              className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-500 hover:shadow-md transition-all group"
             >
               <div className="text-2xl mb-2">👤</div>
-              <h3 className="text-sm font-bold text-slate-800 group-hover:text-teal-600">
+              <h3 className="text-sm font-bold text-slate-800 group-hover:text-blue-600">
                 Patient Profile
               </h3>
               <p className="text-xs text-slate-500 mt-1">
@@ -168,8 +168,8 @@ export default function DashboardPage() {
 
         {/* Doctor & Org Admin Portals */}
         {(isDoctor || isAdmin) && (
-          <section className="bg-gradient-to-r from-teal-900 to-slate-900 text-white rounded-2xl p-6 shadow-md">
-            <h2 className="text-base font-bold text-teal-300 mb-1">
+          <section className="bg-gradient-to-r from-blue-950 to-slate-900 text-white rounded-2xl p-6 shadow-md">
+            <h2 className="text-base font-bold text-sky-400 mb-1">
               Practitioner & Administration Controls
             </h2>
             <p className="text-xs text-slate-300 mb-4">
@@ -188,7 +188,7 @@ export default function DashboardPage() {
                 <>
                   <Link
                     href="/doctor/appointments"
-                    className="px-4 py-2 bg-teal-500 hover:bg-teal-400 text-slate-950 rounded-lg text-xs font-bold transition-colors shadow-sm"
+                    className="px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
                   >
                     🩺 Doctor Appointment Queue & Prescriptions
                   </Link>
@@ -269,7 +269,7 @@ export default function DashboardPage() {
                     value={orgName}
                     onChange={(e) => setOrgName(e.target.value)}
                     placeholder="e.g. Apollo City Hospital"
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -280,7 +280,7 @@ export default function DashboardPage() {
                   <select
                     value={orgType}
                     onChange={(e) => setOrgType(e.target.value as any)}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   >
                     <option value="hospital">Hospital</option>
                     <option value="clinic">Clinic</option>
@@ -292,7 +292,7 @@ export default function DashboardPage() {
                 <button
                   type="submit"
                   disabled={creatingOrg}
-                  className="w-full py-2 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+                  className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
                 >
                   {creatingOrg ? 'Creating...' : '+ Create Organization'}
                 </button>
@@ -334,7 +334,7 @@ export default function DashboardPage() {
                           <h3 className="text-sm font-bold text-slate-900">
                             {membership.organization?.name || 'Unnamed Organization'}
                           </h3>
-                          <span className="px-2 py-0.5 bg-teal-50 text-teal-700 border border-teal-200 rounded text-xs font-medium uppercase">
+                          <span className="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded text-xs font-medium uppercase">
                             {membership.organization?.type}
                           </span>
                         </div>

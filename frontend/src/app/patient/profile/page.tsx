@@ -89,7 +89,7 @@ export default function PatientProfilePage() {
               Your global health profile connected across all hospitals and clinics (Phase 1)
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -115,7 +115,7 @@ export default function PatientProfilePage() {
                 type="date"
                 value={dateOfBirth}
                 onChange={(e) => setDateOfBirth(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -126,7 +126,7 @@ export default function PatientProfilePage() {
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -144,7 +144,7 @@ export default function PatientProfilePage() {
               placeholder="Flat 101, Green Meadows, Bengaluru, Karnataka"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -158,7 +158,7 @@ export default function PatientProfilePage() {
                 placeholder="Parent / Spouse / Relative"
                 value={emergencyName}
                 onChange={(e) => setEmergencyName(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -171,7 +171,7 @@ export default function PatientProfilePage() {
                 placeholder="+91 9876543210"
                 value={emergencyPhone}
                 onChange={(e) => setEmergencyPhone(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -179,7 +179,7 @@ export default function PatientProfilePage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+            className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
           >
             {saving ? 'Saving Profile...' : 'Save Patient Profile'}
           </button>

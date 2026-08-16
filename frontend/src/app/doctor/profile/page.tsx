@@ -76,7 +76,7 @@ export default function DoctorProfilePage() {
           <p className="text-xs text-slate-500 mt-1 mb-4">
             You are not assigned as a Doctor in any organization. Please contact your organization administrator.
           </p>
-          <Link href="/dashboard" className="text-teal-600 text-xs font-semibold hover:underline">
+          <Link href="/dashboard" className="text-blue-600 text-xs font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -94,7 +94,7 @@ export default function DoctorProfilePage() {
               Manage your clinical credentials, specialization, and consultation fees
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -118,7 +118,7 @@ export default function DoctorProfilePage() {
             <select
               value={selectedOrgId}
               onChange={(e) => setSelectedOrgId(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {doctorMemberships.map((m) => (
                 <option key={m.orgId} value={m.orgId}>
@@ -140,7 +140,7 @@ export default function DoctorProfilePage() {
                   placeholder="e.g. Cardiologist, Dermatologist"
                   value={specialization}
                   onChange={(e) => setSpecialization(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export default function DoctorProfilePage() {
                   placeholder="e.g. MCI-123456"
                   value={licenseNo}
                   onChange={(e) => setLicenseNo(e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function DoctorProfilePage() {
                   min={0}
                   value={consultationFee}
                   onChange={(e) => setConsultationFee(Number(e.target.value))}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -183,7 +183,7 @@ export default function DoctorProfilePage() {
                   min={0}
                   value={yearsExperience}
                   onChange={(e) => setYearsExperience(Number(e.target.value))}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -197,14 +197,14 @@ export default function DoctorProfilePage() {
                 placeholder="Brief summary of your clinical expertise and background..."
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
             <button
               type="submit"
               disabled={saving}
-              className="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
+              className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg text-sm transition-colors shadow-sm"
             >
               {saving ? 'Saving Profile...' : 'Save Doctor Profile'}
             </button>

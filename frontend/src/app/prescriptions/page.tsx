@@ -44,7 +44,7 @@ export default function MyPrescriptionsPage() {
               Prescribed medications and doctor instructions across all clinics (Phase 1)
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Back to Dashboard
           </Link>
         </div>
@@ -77,7 +77,7 @@ export default function MyPrescriptionsPage() {
                       <h2 className="text-base font-bold text-slate-900">
                         Prescription by Dr. {presc.doctor?.email}
                       </h2>
-                      <span className="px-2 py-0.5 bg-teal-50 text-teal-700 border border-teal-200 rounded text-[11px] font-bold">
+                      <span className="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded text-[11px] font-bold">
                         Verified Doctor
                       </span>
                     </div>

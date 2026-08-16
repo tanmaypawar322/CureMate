@@ -47,7 +47,7 @@ export default function MyAppointmentsPage() {
           <div className="flex items-center space-x-3">
             <Link
               href="/search"
-              className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
+              className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
             >
               + Book New Appointment
             </Link>
@@ -73,7 +73,7 @@ export default function MyAppointmentsPage() {
               </p>
               <Link
                 href="/search"
-                className="inline-block mt-2 px-4 py-2 bg-teal-600 text-white rounded-lg text-xs font-bold"
+                className="inline-block mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors"
               >
                 Find Doctors
               </Link>
@@ -88,7 +88,7 @@ export default function MyAppointmentsPage() {
                         Dr. {appt.doctorUser?.email}
                       </h3>
                       <span className="text-xs text-slate-400">•</span>
-                      <span className="text-xs font-semibold text-teal-700">
+                      <span className="text-xs font-semibold text-blue-700">
                         {appt.doctor?.specialization || 'Consultation'}
                       </span>
                       <span
@@ -123,7 +123,7 @@ export default function MyAppointmentsPage() {
                     {appt.prescription ? (
                       <Link
                         href="/prescriptions"
-                        className="px-3 py-1.5 bg-teal-50 border border-teal-200 text-teal-800 hover:bg-teal-100 rounded-lg text-xs font-bold transition-colors"
+                        className="px-3 py-1.5 bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 rounded-lg text-xs font-bold transition-colors"
                       >
                         💊 View Prescription
                       </Link>

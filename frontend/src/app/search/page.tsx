@@ -55,7 +55,7 @@ export default function SearchPage() {
               Search verified doctors, clinics, and hospitals across India
             </p>
           </div>
-          <Link href="/dashboard" className="text-xs text-teal-600 font-semibold hover:underline">
+          <Link href="/dashboard" className="text-xs text-blue-600 font-semibold hover:underline">
             ← Dashboard
           </Link>
         </div>
@@ -66,7 +66,7 @@ export default function SearchPage() {
             onClick={() => setActiveTab('doctors')}
             className={`pb-2 px-4 text-sm font-semibold border-b-2 transition-colors ${
               activeTab === 'doctors'
-                ? 'border-teal-600 text-teal-600'
+                ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
@@ -76,7 +76,7 @@ export default function SearchPage() {
             onClick={() => setActiveTab('organizations')}
             className={`pb-2 px-4 text-sm font-semibold border-b-2 transition-colors ${
               activeTab === 'organizations'
-                ? 'border-teal-600 text-teal-600'
+                ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-slate-500 hover:text-slate-700'
             }`}
           >
@@ -92,7 +92,7 @@ export default function SearchPage() {
               placeholder="Specialization (e.g. Cardiologist)"
               value={specialization}
               onChange={(e) => setSpecialization(e.target.value)}
-              className="px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+              className="px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           )}
           <input
@@ -100,21 +100,21 @@ export default function SearchPage() {
             placeholder="City (e.g. Mumbai, Delhi)"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
             placeholder="Keyword (name, hospital, etc.)"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className={`px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 ${
+            className={`px-3 py-2 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               activeTab === 'organizations' ? 'sm:col-span-2' : ''
             }`}
           />
           <button
             onClick={handleSearch}
             disabled={loading}
-            className="py-2 px-4 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
+            className="py-2 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white rounded-lg text-xs font-bold transition-colors shadow-sm"
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
@@ -139,7 +139,7 @@ export default function SearchPage() {
               {doctors.map((doctor) => (
                 <div
                   key={doctor.id}
-                  className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-teal-400 transition-all flex flex-col justify-between"
+                  className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:border-blue-400 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-2">
                     <div className="flex items-start justify-between">
@@ -147,11 +147,11 @@ export default function SearchPage() {
                         <h3 className="text-base font-bold text-slate-900">
                           {doctor.user?.email}
                         </h3>
-                        <p className="text-xs text-teal-700 font-semibold uppercase tracking-wider">
+                        <p className="text-xs text-blue-700 font-semibold uppercase tracking-wider">
                           {doctor.specialization}
                         </p>
                       </div>
-                      <span className="px-2.5 py-1 bg-teal-50 text-teal-800 rounded-lg text-xs font-bold">
+                      <span className="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg text-xs font-bold">
                         ₹{Number(doctor.consultationFee)}
                       </span>
                     </div>
@@ -170,7 +170,7 @@ export default function SearchPage() {
                     <span className="text-xs text-slate-400">Available for Online/Clinic Booking</span>
                     <Link
                       href={`/doctors/${doctor.id}`}
-                      className="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white rounded text-xs font-bold transition-colors shadow-sm"
+                      className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-bold transition-colors shadow-sm"
                     >
                       Book Slot →
                     </Link>
