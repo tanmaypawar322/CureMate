@@ -26,6 +26,15 @@ enum OrgRole {
   @@map("org_role")
 }
 
+enum AppointmentStatus {
+  pending
+  confirmed
+  completed
+  cancelled
+
+  @@map("appointment_status")
+}
+
 model User {
   id           String          @id @default(uuid()) @db.Uuid
   email        String          @unique
@@ -34,7 +43,14 @@ model User {
   abhaId       String?         @map("abha_id")
   createdAt    DateTime        @default(now()) @map("created_at")
   updatedAt    DateTime        @updatedAt @map("updated_at")
-  memberships  OrgMembership[]
+
+  memberships      OrgMembership[]
+  patientProfile   PatientProfile?
+  doctorProfiles   DoctorProfile[]
+  appointments     Appointment[]   @relation("PatientAppointments")
+  doctorAppts      Appointment[]   @relation("DoctorAppointments")
+  prescriptions    Prescription[]  @relation("PatientPrescriptions")
+  doctorPrescripts Prescription[]  @relation("DoctorPrescriptions")
 
   @@map("users")
 }
@@ -44,9 +60,18 @@ model Organization {
   name               String
   type               OrgType
   subscriptionPlanId String?         @map("subscription_plan_id") @db.Uuid
+  address            String?
+  contactNumber      String?         @map("contact_number")
+  city               String?
+  description        String?
   createdAt          DateTime        @default(now()) @map("created_at")
   updatedAt          DateTime        @updatedAt @map("updated_at")
-  memberships        OrgMembership[]
+
+  memberships   OrgMembership[]
+  doctorProfiles DoctorProfile[]
+  availabilities DoctorAvailability[]
+  appointments  Appointment[]
+  prescriptions Prescription[]
 
   @@map("organizations")
 }
@@ -66,4 +91,128 @@ model OrgMembership {
   @@index([orgId])
   @@index([userId])
   @@map("org_memberships")
+}
+
+model PatientProfile {
+  id                    String    @id @default(uuid()) @db.Uuid
+  userId                String    @unique @map("user_id") @db.Uuid
+  dateOfBirth           DateTime? @map("date_of_birth")
+  gender                String?
+  address               String?
+  emergencyContactName  String?   @map("emergency_contact_name")
+  emergencyContactPhone String?   @map("emergency_contact_phone")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("patient_profiles")
+}
+
+model DoctorProfile {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @map("user_id") @db.Uuid
+  orgId           String   @map("org_id") @db.Uuid
+  specialization  String
+  licenseNo       String   @map("license_no")
+  consultationFee Decimal  @default(0) @map("consultation_fee") @db.Decimal(10, 2)
+  bio             String?
+  yearsExperience Int?     @map("years_experience")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization       @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  availability DoctorAvailability[]
+  appointments Appointment[]
+
+  @@unique([userId, orgId])
+  @@index([orgId])
+  @@index([userId])
+  @@index([specialization])
+  @@map("doctor_profiles")
+}
+
+model DoctorAvailability {
+  id                  String   @id @default(uuid()) @db.Uuid
+  doctorId            String   @map("doctor_id") @db.Uuid
+  orgId               String   @map("org_id") @db.Uuid
+  dayOfWeek           Int      @map("day_of_week") // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  startTime           String   @map("start_time") // Format "HH:mm" (e.g. "09:00")
+  endTime             String   @map("end_time") // Format "HH:mm" (e.g. "17:00")
+  slotDurationMinutes Int      @default(30) @map("slot_duration_minutes")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  doctor       DoctorProfile @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  organization Organization  @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@index([orgId])
+  @@index([doctorId])
+  @@index([doctorId, dayOfWeek])
+  @@map("doctor_availability")
+}
+
+model Appointment {
+  id          String            @id @default(uuid()) @db.Uuid
+  orgId       String            @map("org_id") @db.Uuid
+  patientId   String            @map("patient_id") @db.Uuid
+  doctorId    String            @map("doctor_id") @db.Uuid
+  scheduledAt DateTime          @map("scheduled_at")
+  status      AppointmentStatus @default(confirmed)
+  notes       String?
+  createdAt   DateTime          @default(now()) @map("created_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+
+  organization Organization   @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  patient      User           @relation("PatientAppointments", fields: [patientId], references: [id], onDelete: Cascade)
+  doctorUser   User           @relation("DoctorAppointments", fields: [doctorId], references: [id], onDelete: Cascade)
+  doctor       DoctorProfile? @relation(fields: [doctorId, orgId], references: [userId, orgId])
+  prescription Prescription?
+
+  @@index([orgId])
+  @@index([patientId])
+  @@index([doctorId])
+  @@index([scheduledAt])
+  @@map("appointments")
+}
+
+model Prescription {
+  id            String   @id @default(uuid()) @db.Uuid
+  appointmentId String   @unique @map("appointment_id") @db.Uuid
+  doctorId      String   @map("doctor_id") @db.Uuid
+  patientId     String   @map("patient_id") @db.Uuid
+  orgId         String   @map("org_id") @db.Uuid
+  notes         String?
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  appointment  Appointment        @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  organization Organization       @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  doctor       User               @relation("DoctorPrescriptions", fields: [doctorId], references: [id], onDelete: Cascade)
+  patient      User               @relation("PatientPrescriptions", fields: [patientId], references: [id], onDelete: Cascade)
+  items        PrescriptionItem[]
+
+  @@index([orgId])
+  @@index([patientId])
+  @@index([doctorId])
+  @@map("prescriptions")
+}
+
+model PrescriptionItem {
+  id             String   @id @default(uuid()) @db.Uuid
+  prescriptionId String   @map("prescription_id") @db.Uuid
+  orgId          String   @map("org_id") @db.Uuid
+  medicineName   String   @map("medicine_name")
+  dosage         String
+  frequency      String
+  durationDays   Int      @map("duration_days")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  prescription Prescription @relation(fields: [prescriptionId], references: [id], onDelete: Cascade)
+
+  @@index([prescriptionId])
+  @@index([orgId])
+  @@map("prescription_items")
 }

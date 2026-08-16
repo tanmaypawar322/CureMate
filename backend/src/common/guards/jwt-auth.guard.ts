@@ -1,17 +1,15 @@
-import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ExecutionContext,
+  Injectable,
+  SetMetadata,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
 import { Observable } from 'rxjs';
 
 export const IS_PUBLIC_KEY = 'isPublic';
-export const Public = () => (target: object, key?: string | symbol, descriptor?: TypedPropertyDescriptor<any>) => {
-  if (descriptor) {
-    Reflect.defineMetadata(IS_PUBLIC_KEY, true, descriptor.value);
-    return descriptor;
-  }
-  Reflect.defineMetadata(IS_PUBLIC_KEY, true, target);
-  return target;
-};
+export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {

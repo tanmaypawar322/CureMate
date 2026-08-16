@@ -14,8 +14,7 @@ export class TenantInterceptor implements NestInterceptor {
     const request = context.switchToHttp().getRequest();
     const rawOrgId =
       (request.headers['x-org-id'] as string) ||
-      request.params?.orgId ||
-      request.body?.orgId;
+      request.params?.orgId;
     const user = request.user;
     const userId = user?.id;
 

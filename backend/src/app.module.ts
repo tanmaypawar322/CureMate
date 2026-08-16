@@ -5,6 +5,11 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { DoctorsModule } from './doctors/doctors.module';
+import { PatientsModule } from './patients/patients.module';
+import { SearchModule } from './search/search.module';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { PrescriptionsModule } from './prescriptions/prescriptions.module';
 import { TenantInterceptor } from './common/interceptors/tenant.interceptor';
 
 @Module({
@@ -17,6 +22,11 @@ import { TenantInterceptor } from './common/interceptors/tenant.interceptor';
     AuthModule,
     UsersModule,
     OrganizationsModule,
+    DoctorsModule,
+    PatientsModule,
+    SearchModule,
+    AppointmentsModule,
+    PrescriptionsModule,
   ],
   providers: [
     {
