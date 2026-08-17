@@ -1,15 +1,23 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { ApiClient, Prescription } from '@/lib/api';
 
 export default function MyPrescriptionsPage() {
+  const router = useRouter();
   const { user, loading } = useAuth();
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
 
   const loadPrescriptions = async () => {
     setFetching(true);
@@ -30,8 +38,15 @@ export default function MyPrescriptionsPage() {
     }
   }, [user]);
 
-  if (loading || fetching) {
-    return <div className="p-8 text-center text-slate-500">Loading prescriptions...</div>;
+  if (loading || !user || fetching) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto mb-3"></div>
+          <p className="text-sm text-slate-500">Loading prescriptions...</p>
+        </div>
+      </div>
+    );
   }
 
   return (

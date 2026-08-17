@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { ApiClient } from '@/lib/api';
 
 export default function PatientProfilePage() {
+  const router = useRouter();
   const { user, loading } = useAuth();
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [gender, setGender] = useState('other');
@@ -16,6 +18,12 @@ export default function PatientProfilePage() {
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -75,8 +83,15 @@ export default function PatientProfilePage() {
     }
   };
 
-  if (loading || fetching) {
-    return <div className="p-8 text-center text-slate-500">Loading patient profile...</div>;
+  if (loading || !user || fetching) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto mb-3"></div>
+          <p className="text-sm text-slate-500">Loading patient profile...</p>
+        </div>
+      </div>
+    );
   }
 
   return (

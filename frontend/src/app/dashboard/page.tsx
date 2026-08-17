@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
@@ -16,7 +16,13 @@ export default function DashboardPage() {
   const [orgError, setOrgError] = useState<string | null>(null);
   const [orgSuccess, setOrgSuccess] = useState<string | null>(null);
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
+
+  if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
         <div className="text-center">
@@ -25,13 +31,6 @@ export default function DashboardPage() {
         </div>
       </div>
     );
-  }
-
-  if (!user) {
-    if (typeof window !== 'undefined') {
-      router.replace('/login');
-    }
-    return null;
   }
 
   const handleCreateOrg = async (e: React.FormEvent) => {
@@ -60,8 +59,9 @@ export default function DashboardPage() {
     router.push('/login');
   };
 
-  const isDoctor = user.memberships?.some((m) => m.role === 'doctor');
-  const isAdmin = user.memberships?.some((m) => m.role === 'admin');
+  const memberships = user?.memberships || [];
+  const isDoctor = memberships.some((m) => m.role === 'doctor');
+  const isAdmin = memberships.some((m) => m.role === 'admin');
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -313,11 +313,11 @@ export default function DashboardPage() {
                   </p>
                 </div>
                 <span className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-semibold">
-                  {user.memberships?.length || 0} {user.memberships?.length === 1 ? 'Org' : 'Orgs'}
+                  {memberships.length} {memberships.length === 1 ? 'Org' : 'Orgs'}
                 </span>
               </div>
 
-              {(!user.memberships || user.memberships.length === 0) ? (
+              {memberships.length === 0 ? (
                 <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-lg">
                   <div className="text-3xl mb-2">🏥</div>
                   <h3 className="text-sm font-semibold text-slate-700">No organizations linked</h3>
@@ -327,7 +327,7 @@ export default function DashboardPage() {
                 </div>
               ) : (
                 <div className="divide-y divide-slate-100">
-                  {user.memberships.map((membership) => (
+                  {memberships.map((membership) => (
                     <div key={membership.id} className="py-4 first:pt-0 last:pb-0 flex items-start justify-between">
                       <div className="space-y-1">
                         <div className="flex items-center space-x-2">

@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { ApiClient, Appointment, PrescriptionItem } from '@/lib/api';
 
 export default function DoctorAppointmentsPage() {
+  const router = useRouter();
   const { user, loading } = useAuth();
   const [selectedOrgId, setSelectedOrgId] = useState('');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -20,6 +22,12 @@ export default function DoctorAppointmentsPage() {
     { medicineName: 'Paracetamol', dosage: '500mg', frequency: 'Twice daily after meals', durationDays: 5 },
   ]);
   const [submittingPresc, setSubmittingPresc] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
 
   const doctorMemberships = user?.memberships?.filter((m) => m.role === 'doctor' || m.role === 'admin') || [];
 
@@ -106,8 +114,15 @@ export default function DoctorAppointmentsPage() {
     }
   };
 
-  if (loading) {
-    return <div className="p-8 text-center text-slate-500">Loading doctor queue...</div>;
+  if (loading || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto mb-3"></div>
+          <p className="text-sm text-slate-500">Loading doctor queue...</p>
+        </div>
+      </div>
+    );
   }
 
   if (doctorMemberships.length === 0) {

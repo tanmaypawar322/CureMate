@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { ApiClient } from '@/lib/api';
 
 export default function OrgSettingsPage() {
+  const router = useRouter();
   const { user, loading } = useAuth();
   const [selectedOrgId, setSelectedOrgId] = useState('');
   const [name, setName] = useState('');
@@ -16,6 +18,12 @@ export default function OrgSettingsPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.replace('/login');
+    }
+  }, [user, loading, router]);
 
   const adminMemberships = user?.memberships?.filter((m) => m.role === 'admin') || [];
 
@@ -69,8 +77,15 @@ export default function OrgSettingsPage() {
     }
   };
 
-  if (loading) {
-    return <div className="p-8 text-center text-slate-500">Loading settings...</div>;
+  if (loading || !user) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent mx-auto mb-3"></div>
+          <p className="text-sm text-slate-500">Loading settings...</p>
+        </div>
+      </div>
+    );
   }
 
   if (adminMemberships.length === 0) {
